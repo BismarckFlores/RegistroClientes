@@ -11,5 +11,18 @@ namespace RegistroClientes
         static void Main(string[] args)
         {
         }
+
+        public static string ProcesarRegistro(string nombre)
+        {
+            try
+            {
+                string nombreNormalizado = nombre.Trim().ToUpper();
+                return nombreNormalizado;
+            }
+            catch (NullReferenceException)
+            {
+                return "(vacío)";
+            }
+        }
     }
 }
