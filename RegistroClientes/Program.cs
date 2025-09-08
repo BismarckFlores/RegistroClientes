@@ -13,6 +13,7 @@ namespace RegistroClientes
         {
             string nombre;
             string numWhatsapp;
+            string nombreProcesado;
 
             Console.WriteLine("+++++++ Bienvenido a la Feria de Emprendimiento +++++++");
             Console.WriteLine("Por favor digite los siguientes datos: ");
@@ -20,13 +21,17 @@ namespace RegistroClientes
             nombre = Console.ReadLine();
             Console.Write("Número de Whatsapp: ");
             numWhatsapp = Console.ReadLine();
-            string nombreProcesado = ProcesarRegistro(nombre);
+            nombreProcesado = ProcesarRegistro(nombre);
             Console.WriteLine("\n--- Registro Exitoso ---");
             Console.WriteLine($"Nombre: {nombreProcesado}");
             Console.WriteLine($"Whatsapp: {numWhatsapp}");
         }
         public static string ProcesarRegistro(string nombre)
         {
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                nombre = null;
+            }
             try
             {
                 TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
@@ -34,6 +39,8 @@ namespace RegistroClientes
             }
             catch (NullReferenceException)
             {
+                Console.WriteLine("\n--- Error de Registro ---");
+                Console.WriteLine("Nombre no proporcionado. No es posible normalizar los datos del cliente.\n");
                 return "(vacío)";
             }
         }
