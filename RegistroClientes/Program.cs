@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,21 +29,8 @@ namespace RegistroClientes
         {
             try
             {
-                string nombreNormalizado = nombre.Trim().ToUpper();
-                return nombreNormalizado;
-            }
-            catch (NullReferenceException)
-            {
-                return "(vacío)";
-            }
-        }
-
-        public static string ProcesarRegistro(string nombre)
-        {
-            try
-            {
-                string nombreNormalizado = nombre.Trim().ToUpper();
-                return nombreNormalizado;
+                TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
+                return ti.ToTitleCase(nombre.Trim().ToLower());
             }
             catch (NullReferenceException)
             {
